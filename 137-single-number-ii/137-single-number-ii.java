@@ -1,22 +1,22 @@
 class Solution {
     public int singleNumber(int[] nums) {
+        /**
+          calcuate the sum of set bit at each position of 32 bit number add them called it sum.
+        if sum%3 == 1 then this is our bit required for the single number. 
+        */
         
-        Map<Integer,Integer> map = new HashMap<>();
-        
-        for(Integer num:nums){
-            
-            if(map.containsKey(num)){
-                map.put(num,map.get(num)+1);
-            }else{
-                 map.put(num,1);
+        int res = 0;
+        for(int i=0; i<32 ;i ++){
+            int sum  = 0 ;
+            for(int j=0; j<nums.length;j++){
+                if((nums[j] & (1 << i)) != 0)
+                    sum++;
+                
             }
-           
+            
+            if(sum % 3==1)
+                res = res +(1<<i);
         }
-        
-      for(Integer key:map.keySet()){
-          
-          if(map.get(key) == 1) return key;
-      }
-        return -1;
+        return res;
     }
 }
