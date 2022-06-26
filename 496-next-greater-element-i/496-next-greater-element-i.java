@@ -24,16 +24,15 @@ class Solution {
             while(!stack.isEmpty() && stack.peek() <= nums2[i]){
                 stack.pop();
             }
-         
-                if(!stack.isEmpty()){
-                    nge[i]=stack.peek();
-                    map.put(nums2[i],nge[i]);
-                }else{
-                    nge[i] =-1;
-                    map.put(nums2[i],-1);
-                }
+                int nxtgrt = 0;
+                if(!stack.isEmpty())  
+                    nxtgrt=stack.peek();
+                else
+                    nxtgrt=-1;
+                
+               map.put(nums2[i],nxtgrt);
             
-            stack.push(nums2[i]);
+              stack.push(nums2[i]);
         }
         System.out.println(Arrays.toString(nge));
         int res [] = new int[nums1.length];
