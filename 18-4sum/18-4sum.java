@@ -47,12 +47,12 @@ class Solution {
         
         for(int i=0 ; i<n;i++){
             for(int j=i+1;j<n;j++){
-               Long target2 = Long.valueOf(target)- Long.valueOf(nums[i])-Long.valueOf(nums[j]);
+               long target2 = (long)target- (long)nums[i]-(long)nums[j];
                 
                 int left= j+1;
                 int right = n-1;
                 while(left<right){
-                    Long twoSum = Long.valueOf(nums[left]) + Long.valueOf(nums[right]) ;
+                    long twoSum = (long)nums[left] + (long)nums[right] ;
                     if(twoSum< target2){
                         left++;
                     }else if(twoSum > target2){
