@@ -36,6 +36,9 @@ class Solution {
              
              we come next time and thread is aready connected , disconnect the tread print the curr               element and move to the right guy.
              
+              TC =   O(n)
+               space complexity O(1)
+             
              
       
       
