@@ -49,7 +49,7 @@ class Solution {
         
         for(k=n-2;k>=0;k--){
             
-            if(nums[k] < nums[k+1]){
+            if(nums[k] < nums[k+1]){ //  from above example try to find incorrect 3 > 6  
                 break;
             }
         }
