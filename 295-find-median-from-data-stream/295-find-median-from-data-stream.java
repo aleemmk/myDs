@@ -66,11 +66,17 @@ class MedianFinder {
     }
     
     public void addNum(int num) {
+        /** by deafult add to the left for adding in right it must contains element 
+        and num >= top of right
+         maxheap | minheap
+         left    | right
+        */
         
-        if(maxheap.isEmpty() || num <= maxheap.peek())
-            maxheap.offer(num);
-        else
-            minheap.offer(num);
+        if(!minheap.isEmpty() && num >= minheap.peek()){
+             minheap.offer(num);
+        }else{
+             maxheap.offer(num);
+        }
                        
         if(maxheap.size() > minheap.size() + 1)
              minheap.offer(maxheap.poll());
