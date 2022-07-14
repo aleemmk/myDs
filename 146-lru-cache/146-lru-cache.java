@@ -14,13 +14,13 @@ class LRUCache {
       | Value |
       |(3,15) |
       ----------
-        Node r
+        Node dllNode
       
-      |          |
-      |          |
-      |  (3,r)   |
-      | key,Node |
-      |__________|
+      |           |
+      |           |
+      |(3,dllNode)|
+      | key,Node  |
+      |__________ |
         
          Map
       
