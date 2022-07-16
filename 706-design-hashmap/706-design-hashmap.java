@@ -1,5 +1,11 @@
 class MyHashMap {
-    
+    /**
+       implement with array of linkedlist 
+       
+       initillly we have empty array of linkedlist of type HMNode.
+       
+       
+    */
 
     private class HMNode{
         Integer key;
@@ -10,16 +16,22 @@ class MyHashMap {
         }
     }
     
-    private int size;  // n
+    private int size;  // total numbe rof hashmap element
     
     
     private LinkedList<HMNode> [] buckets;  // N
     
+    /** this constucture start with any bucket size given (4 or anything);
+    initilly each linkedlist is zero size 
+    */
     public MyHashMap() {
         initBucket(4);
         size=0;
     }
     
+    /**
+      THis is to fill each bucket with empty linked list
+    */
     private void initBucket(int N){
         
         buckets = new LinkedList[N];
@@ -29,12 +41,17 @@ class MyHashMap {
         }
     }
     
+    /** This is hash function which decide bucket index*/
     private int hashfn(Integer key){
         int hash = key.hashCode();
         
         return Math.abs(hash) % buckets.length;
     }
     
+    /** As each bucket is having linkedlist this function return the index of key with the inked list when bucket index is given
+    
+    param key and bucket index
+    */
   private int getIndexWithInbucket(int key ,int bi){
       
       int di = 0 ;
@@ -48,6 +65,7 @@ class MyHashMap {
       return -1;
   }
     
+    /**  this put function of hashmap*/
     public void put(Integer key, Integer val) {
         
         int bi = hashfn(key);
@@ -71,6 +89,12 @@ class MyHashMap {
         
     }
     
+    /** this function is responsible to double the bucket size when (lamda > 2)
+    
+    lamda = curr_size_bucket(current size of map) / total declared capacity (size of buckets  arr);
+    
+    this function doubles size of array and put each key value new array again by hashmap put function.
+    */
     private void rehash(){
         LinkedList<HMNode> [] oba = buckets;
         
@@ -85,6 +109,7 @@ class MyHashMap {
         }
     }
     
+    /** get the value for a particular key*/
     public Integer get(Integer key) {
         int bi = hashfn(key);
         int indexWithinbucket = getIndexWithInbucket(key,bi);
@@ -96,6 +121,7 @@ class MyHashMap {
         return -1;
     }
     
+    /**remove particular key if exist in map */
     public void remove(Integer key) {
         int bi = hashfn(key);
       int indexWithinbucket = getIndexWithInbucket(key,bi);
