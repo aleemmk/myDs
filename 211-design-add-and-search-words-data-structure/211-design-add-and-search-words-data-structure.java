@@ -1,0 +1,88 @@
+class WordDictionary {
+    
+    class Node{
+        
+        Node links[] = new Node[26];
+        
+        boolean isEnd;
+        
+        private boolean containsKey(char c){
+            return links[c-'a'] != null;
+        }
+        
+        private boolean isEnd(){
+            return isEnd;
+        }
+        
+        private void setEnd(){
+            isEnd = true;
+        }
+        
+        private void put(char c ,Node node){
+            links[c-'a'] = node;
+        }
+        
+        private Node get(char c){
+            return links[c-'a'];
+        }
+        
+        public Node(){
+            
+        }
+    }
+   
+     private Node  root;
+    public WordDictionary() {
+        root = new Node();
+    }
+    
+    public void addWord(String word) {
+        Node node = root;
+        
+        for(int i=0;i< word.length();i++){
+            char c = word.charAt(i);
+            if(!node.containsKey(c))
+               node.put(c,new Node());
+            
+            node = node.get(c);
+        }
+        node.setEnd();
+    }
+    
+    public boolean search(String word) {
+        Node node = root;
+        return dfs(word,root,0); 
+    }
+   //  .ad   26 ^ 3
+    /**
+    ["WordDictionary","addWord","addWord","addWord","search","search","search","search"]
+      [[],["bad"],["dad"],["mad"],["pad"],["bad"],["b.s"],["b.."]]
+    */
+    private boolean  dfs(String word, Node root,int j){
+       Node node = root;
+        for( int i= j ; i < word.length();i++){
+            char c = word.charAt(i);
+            if(c == '.'){
+               
+              Node currNodeLinks [] = node.links;
+               for(int k=0;k < currNodeLinks.length;k++){
+                   if(currNodeLinks[k] != null)
+                     if(dfs(word,currNodeLinks[k],i+1)) return true;
+               } 
+                return false;
+             }else{
+                if(!node.containsKey(c)) return false;
+               
+            }
+             node = node.get(c);
+        }
+       return  node.isEnd();
+    }
+}
+
+/**
+ * Your WordDictionary object will be instantiated and called as such:
+ * WordDictionary obj = new WordDictionary();
+ * obj.addWord(word);
+ * boolean param_2 = obj.search(word);
+ */
