@@ -1,5 +1,21 @@
 class WordDictionary {
     
+    /** This is same as normal version of tries add function have complexity O(word length) 
+    
+    Wild card serach : 
+    a.d
+    for this . we have 26 possibilities so our search function behaves in iterative way in case of character 
+    
+    but in case of . we have Node links[26] array so for each non null item in this array ,pick one by one ,we      need to check 
+    iteratively for every charcter of give word if rach end of word then it's fine .else we back track via recursion and try with next non null value of links array.
+
+ TC
+ ====
+ in worst case 
+ O(n +  26 ^ n)
+  insert + search 
+    */
+    
     class Node{
         
         Node links[] = new Node[26];
