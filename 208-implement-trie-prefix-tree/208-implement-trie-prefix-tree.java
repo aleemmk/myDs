@@ -8,6 +8,13 @@ class Trie {
        put Node in each letter  index (a = 1 , b=2 ,c=3 ...so on z=26) so tha we can reuse when inserting new word  "ape" (i.e and p reused here)
        
        2. to know what is the end of word we just make end flag True for the node (i.e 'e' in case of above)
+       
+       TC
+       =======
+       insert and serach O(key length) word length;
+       
+       memory required O(26*keylength*n);
+       
     */
     
     class Node{
