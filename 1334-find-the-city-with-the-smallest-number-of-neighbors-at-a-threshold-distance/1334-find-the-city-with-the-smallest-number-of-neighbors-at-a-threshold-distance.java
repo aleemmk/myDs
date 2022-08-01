@@ -11,7 +11,15 @@ class Solution {
       if 4 have some value return else chek for 3 ,2, 1
       this is all pair shortest path problem
       
+      
+       all the path from i->j via k is 
+       
       dp[i][j] = Math.min(dp[i][j],dp[i][k]+dp[k][j]);
+      
+      TC 
+      O(V ^3)
+      space complexity 
+      O(V ^ 2)
 
     */
     public int findTheCity(int n, int[][] edges, int distanceThreshold) {
@@ -26,7 +34,7 @@ class Solution {
         for(int[] e:edges){
             
             dp[e[0]] [e[1]] =  e[2];
-            dp[e[1]] [e[0]] = e[2];
+            dp[e[1]] [e[0]] = e[2];   // non directed graph i->j and j -> i  
         }
         
         
@@ -46,7 +54,7 @@ class Solution {
              int count =0;
             for(int j=0;j<n;j++){
                 
-                if(i!= j && dp[i][j] <= distanceThreshold)
+                if(i!=j && dp[i][j] <= distanceThreshold) 
                     count++;
                 
             }
