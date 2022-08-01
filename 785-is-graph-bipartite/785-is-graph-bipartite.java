@@ -7,6 +7,13 @@ class Solution {
      Here we chose solution of graph coloring we chose two color (red, green) if a node is red then all it's adjacent    nodes are green . if we find ambiguity in this then it means the graph have odd length cycle and hence not bipartite.
      
       state 
+
+     Input: graph = [[1,2,3],[0,2],[0,1,3],[0,2]]
+     
+     input is given as adjacency list 0 index have adjacent node {1,2,3}
+     
+      TC 
+      O(V)  V for coloring.
     */
     public boolean isBipartite(int[][] graph) {
         
@@ -18,6 +25,7 @@ class Solution {
         
         for(int i=0 ;i < graph.length;i++){
             
+            // visit only if not colored yet 0 or 1;
             if(color[i] == -1 )
                 if( !bfs(graph,color,i)) return false;
         }
@@ -36,8 +44,11 @@ class Solution {
                 int node = q.poll();
                 
                 for(int neighnour:graph[node]){
-                    if(color[node] == color[neighnour])  return false;
+                    // color of node and any of it's adjacent node are not same
                     
+                    if(color[node] == color[neighnour])  return false; 
+                    
+                    // visit only if not colored yet not 0 or 1
                     if(color[neighnour] == -1){
                         color[neighnour] = 1-color[node];
                         q.add(neighnour);
