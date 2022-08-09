@@ -13,11 +13,21 @@ class Solution {
       
       but s is odd it means we can't devide into two subset of equal sum .
       
-      subset sum is the 0/1 knapsack probem 
+      subset sum is the 0/1 knapsack probem for each element we have two choice
       
-        
-      
-    */
+                    each element i 
+                     -      -
+                    -       -
+                   -          -
+                   -           -
+                 -               -
+             not include        
+          curr ele > target      curr  >= target
+                                 i) inculede if taking curr then equal to target
+                                 ii) not include is by taking curr not equal to target
+                                   OR on both condition
+                                
+     */
     public boolean canPartition(int[] nums) {
         
         int sum = 0;
@@ -39,10 +49,10 @@ class Solution {
             
             for(int j=1;j<=sum;j++){
                 
+                 if(nums[i-1] > j) dp[i][j] = dp[i-1][j];
                 
-                if(nums[i-1] > j) dp[i][j] = dp[i-1][j];
                 else if(j >= nums[i-1])
-                    dp[i][j] = dp[i-1][j] || dp[i-1] [j-nums[i-1]];
+                    dp[i][j] =  dp[i-1][j] || dp[i-1] [j-nums[i-1]];
                 
                 
             }
