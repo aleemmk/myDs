@@ -18,7 +18,7 @@ class Solution {
       
       not include  dp[i][j] =  dp[i-1][j]
       
-      include   dp[i][j]  = 1 + dp [i-1][j-coin[i-1]] ;
+      include   dp[i][j]  = 1 + dp [i][j-coin[i-1]] ;
       
             
     */
