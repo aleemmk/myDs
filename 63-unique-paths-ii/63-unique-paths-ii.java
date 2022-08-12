@@ -52,12 +52,10 @@ class Solution {
         for(int i=1;i<row;i++){
             for(int j=1;j<col;j++){
                 
-                dp[i][j]  = dp[i-1][j]+dp[i][j-1];
-                
-                if(obstacleGrid [i][j] ==1) 
-                     dp[i][j] = 0;
-                
-                //dp[i][j]  = dp[i-1][j]+dp[i][j-1];
+                if(obstacleGrid [i][j] ==1)  
+                     dp[i][j] = 0;    // if got obstacle mark current cell  0 unreachable
+                else
+                dp[i][j]  = dp[i-1][j]+dp[i][j-1];  // sum of left and top cell
             }
         }
         
