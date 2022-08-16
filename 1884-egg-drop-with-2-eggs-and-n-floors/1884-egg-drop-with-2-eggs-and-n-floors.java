@@ -5,7 +5,7 @@ class Solution {
     */
     public int twoEggDrop(int n) {
      int e = 2;
-        int dp [] [] = new int [e+2][n+2];
+        int dp [] [] = new int [e+1][n+1];
      // 
             
             for(int i=0;i<dp.length;i++){
