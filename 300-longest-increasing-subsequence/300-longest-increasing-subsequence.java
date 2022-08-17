@@ -9,17 +9,29 @@ class Solution {
            and LIS[i]+1 > LIS[j] 
             LIS(j) = 1+LIS[i]
             
-    LIS  [ 1,1,1,2,2,3,4,1]      
+    LIS  [ 1,1,1,2,2,3,4,1]     
+    
+    
+      i----------------j
+      i------------j
+      i---------j
+      ------  
+      i    j
+  arr [1,   3, 5 , 4 , 7]
+     
+ LIS [1,   2, 3, 3,   4]
+      
     */
     public int lengthOfLIS(int[] nums) {
         int n = nums.length;
         int LIS [] =new int[n];
         
-        LIS[0]=1;
+       // LIS[0]=1;
+        Arrays.fill(LIS,1);
         
         for(int j=1; j<n; j++){
              
-            LIS[j] = 1;
+          //  LIS[j] = 1;
             
             for(int i=0;i<j;i++){
                 
