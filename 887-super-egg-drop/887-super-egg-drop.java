@@ -1,16 +1,16 @@
 class Solution {
     
-    int dp [] [] ;
+    
     public int superEggDrop(int e, int n) {
-         dp = new int [e+1][n+1];
+          int dp [] []  = new int [e+1][n+1];
             
             for(int i=0;i<dp.length;i++){
                 Arrays.fill(dp[i],-1);
             }
-        return eggDrop(e,n);
+        return eggDrop(e,n,dp);
     }
     
-     private int eggDrop(int e,int n){
+     private int eggDrop(int e,int n,int dp [] []){
         // e egg and n floor
         
         if(dp[e][n] !=-1) return dp[e][n];
@@ -40,9 +40,9 @@ class Solution {
          while(l<=r){
              int k = (l+r)/2;
              
-             int down = eggDrop(e-1,k-1);   // break
+             int down = eggDrop(e-1,k-1,dp);   // break
              
-             int up = eggDrop(e,n-k);    // not break;
+             int up = eggDrop(e,n-k,dp);    // not break;
              
              int moves = 1+Math.max(down,up);
              
