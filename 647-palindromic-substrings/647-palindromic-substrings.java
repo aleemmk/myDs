@@ -8,6 +8,7 @@ class Solution {
         2 b | F  F  T  F  F
         3 a | F  F  F  T  F
         4 c | F  F  F  F  T
+        
     */
     public int countSubstrings(String s) {
         int n = s.length();
@@ -36,8 +37,8 @@ class Solution {
     // for 3 onward we need to check   s.charAt(i) == s.charAt(j)  and dp[i+1][j-1] == TRUE
         
         for(int len=2;len<n;len++){
-            for(int i=0;i+len<n;i++){
-                int j = i+len;
+            for(int i=0;i+len<n;i++){  // control the start index
+                int j = i+len;   // control end index
                 if(s.charAt(i) == s.charAt(j) && dp[i+1][j-1]){
                     dp[i][j] = true;
                     res++;
