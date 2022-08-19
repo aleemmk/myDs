@@ -1,24 +1,33 @@
 class Solution {
     /**
      each number have two choices , + or - we have knapsak value is target
-     
+       nums = [1,1,1,1,1], target = 3
+       (index, currSum)
+        
+        (0,0)
+          /\
+      +1 /  \-1
+      (1,0+1) (1,-1)
+         
      
     */
     int count=0;
-   // int dp[][];
-    Map<Integer,Integer> mapArray [] ;  // currSum and way mapping
+    //int dp[][];
+    Map<Integer,Integer> dp [] ;  // currSum and way mapping
     public int findTargetSumWays(int[] nums, int target) {
-        
         
         int index = nums.length-1;
         int currSum = 0;
-        mapArray = new HashMap[nums.length];
-        //dp = new int [nums.length+1][target+1];
-         return targetSumWays1(index,nums,currSum,target);
+        dp = new HashMap[nums.length];
         
-         //targetSumWays2(0,nums,currSum,target);
-         //return count;
+       // return targetSumWays1(index,nums,currSum,target);
+        
+         return targetSumWays2(0,nums,currSum,target);
     }
+    
+    
+    
+    //recusive with memoazied with map
     
     private int targetSumWays1(int index,int[] nums, int currSum,int target){
         // base case
@@ -27,7 +36,8 @@ class Solution {
             return 1;
         if(index < 0) return 0;
         
-        Map<Integer,Integer> map = mapArray[index];
+        Map<Integer,Integer> map = dp[index];
+        
         if(map !=null && map.containsKey(currSum)) return map.get(currSum);
             
         int positive = targetSumWays1(index-1,nums,currSum+nums[index],target);
@@ -38,17 +48,30 @@ class Solution {
         if(map == null)map = new HashMap<>(); 
         
         map.put(currSum,ways);
-        mapArray[index] = map;
+        dp[index] = map;
         return ways;
     }
-    
-    private void targetSumWays2(int index,int[] nums, int currSum,int target){
+     
+    private int targetSumWays2(int index,int[] nums, int currSum,int target){
         
         if(index == nums.length) {
-           if(target==currSum) count++;
-              return ;
+           if(target==currSum) return 1;
+            else return 0;
+        }else{
+           Map<Integer,Integer> map= dp[index] ;
+            if(map !=null && map.containsKey(currSum)) return map.get(currSum);
+            
+          int positive = targetSumWays2(index+1,nums,currSum+nums[index],target);
+          int negative =targetSumWays2(index+1,nums,currSum-nums[index],target);
+            
+          if(map == null )map = new HashMap<>();
+            
+            map.put(currSum,positive+negative);
+            dp[index] = map;
+       
+            return positive+negative;
+            
         }
-          targetSumWays2(index+1,nums,currSum+nums[index],target);
-          targetSumWays2(index+1,nums,currSum-nums[index],target);
+    } 
+         
     }
-}
