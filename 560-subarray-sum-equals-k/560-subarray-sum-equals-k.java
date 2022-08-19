@@ -29,7 +29,7 @@ class Solution {
             prefixSum += nums[i];
             
             if(map.containsKey(prefixSum-k))
-                count +=map.get(prefixSum-k);
+                count +=map.get(prefixSum-k);  // add in curr count ;
             
             if(map.containsKey(prefixSum)){
                 map.put(prefixSum,map.get(prefixSum)+1);
