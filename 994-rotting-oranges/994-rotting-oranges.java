@@ -43,9 +43,10 @@ class Solution {
         
         int dirs[][] = {{-1,0},{0,1},{0,-1},{1,0}};
         
-        int min=0;
+        int count=0;
         
-     while(!queue.isEmpty() && countfresh > 0){
+        // either queue or fresh oranges which one is exhausted earlier.
+     while(!queue.isEmpty() && countfresh > 0){  
         
          int size = queue.size();
          
@@ -68,10 +69,10 @@ class Solution {
              }
              
          }
-          min++;
+          count++;
      }
     
         
-         return countfresh != 0 ? -1: min;
+         return countfresh != 0 ? -1: count;
     }
 }
