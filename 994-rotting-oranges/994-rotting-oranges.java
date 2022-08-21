@@ -46,7 +46,7 @@ class Solution {
         int count=0;
         
         // either queue or fresh oranges which one is exhausted earlier.
-     while(!queue.isEmpty() && countfresh > 0){  
+     while(!queue.isEmpty() && countfresh !=0){  
         
          int size = queue.size();
          
