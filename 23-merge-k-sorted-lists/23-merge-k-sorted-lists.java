@@ -27,9 +27,66 @@
  k list
  n log n soluton
  
+ better solution 
+ ==================
+ 
+ use min heap , put all head pointer in min heap .
+ 
+ pop value from min heap ,push next value of list , and make new list with poped value.
+ 
+ do untill heap is empty;
+ return head of newly formd list
+ 
+ TC
+ 
+ building heap is ok size k is O(k)
+ 
+ push/pop in heap is logk
+ 
+ we are doing this operaton n times
+ 
+ O(n log k)
+ 
 */
 class Solution {
-    public ListNode mergeKLists(ListNode[] lists) {
+ 
+     public ListNode mergeKLists(ListNode[] lists) {
+         
+         
+         
+         PriorityQueue<ListNode> pq = new PriorityQueue(new Comparator<ListNode>(){
+             public int compare(ListNode o1,ListNode o2){
+                 return o1.val- o2.val;
+             }
+         });
+         
+         for(ListNode node:lists){
+             if(node != null)
+             pq.offer(node);
+         }
+         
+         ListNode newList = new ListNode(0);
+         ListNode head = newList;
+         
+         while(!pq.isEmpty()){
+             
+             ListNode minNode = pq.poll();   // min node from min heap
+             
+             ListNode node = new ListNode(minNode.val);  // constryct min node
+             
+             head.next = node;   // connect min node with last node
+             
+             if(minNode.next != null){  // add next element of minNode list to the minheap
+                 pq.offer(minNode.next);
+             }
+             head = head.next;   // update last node in linkedlist in which next ,min node will be added
+         }
+         
+         return newList.next;
+     }
+    
+    
+    /*   public ListNode mergeKLists(ListNode[] lists) {
         
         List<Integer> list = new ArrayList<>();
         
@@ -58,7 +115,7 @@ class Solution {
         
         return newList.next;
         
-    }
+    }*/
     
     
     
