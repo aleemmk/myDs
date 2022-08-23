@@ -11,6 +11,9 @@ class Solution {
         
      2. Approach
       we can use double ended queue .
+      
+      TC  o(n)+o(n) amortized
+      space O(K);
      
     */
     public int[] maxSlidingWindow(int[] nums, int k) {
