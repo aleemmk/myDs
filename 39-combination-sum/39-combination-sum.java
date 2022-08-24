@@ -18,6 +18,11 @@ class Solution {
     
     we keep on doing and back track by removing from list.
    
+   
+     TC 
+     T is larget length 
+     k is the average length of each combination generated.
+      2 ^ T * k
    */
    List<List<Integer>> res;
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
