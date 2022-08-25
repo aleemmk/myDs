@@ -1,7 +1,13 @@
 class Solution {
     
     /**
-          (0,0)
+         need to check for all cell of grid with start char of word if find then look every direction for the 
+         next word . if not find the recurive calls then back track 
+         
+         TC
+         O(M*N*4L)
+         
+         space O(L)
     */
     public boolean exist(char[][] board, String word) {
         
