@@ -34,7 +34,7 @@ class Solution {
         return res;
     }
     
-    private void findCombination(int start,int [] candidates,int target,List<Integer> list){
+   /* private void findCombination(int start,int [] candidates,int target,List<Integer> list){
         if(start == candidates.length){
            
             if(target == 0)
@@ -52,6 +52,23 @@ class Solution {
         }
         // not picked
         findCombination(start+1,candidates,target,list);
+        
+    }*/
+    
+    private void findCombination(int start,int [] candidates,int target,List<Integer> list){
+        
+        if(target < 0) return ;
+        
+       else if(target == 0){
+                 res.add(new ArrayList<>(list));
+               return;
+       }else{
+           for(int i = start;i<candidates.length;i++){
+             list.add(candidates[i]);
+            findCombination(i,candidates,target-candidates[i],list);
+            list.remove(list.size()-1);
+           }
+       }
         
     }
 }
