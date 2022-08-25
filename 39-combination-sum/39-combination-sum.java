@@ -34,7 +34,7 @@ class Solution {
         return res;
     }
     
-   /* private void findCombination(int start,int [] candidates,int target,List<Integer> list){
+    private void findCombination(int start,int [] candidates,int target,List<Integer> list){
         if(start == candidates.length){
            
             if(target == 0)
@@ -53,8 +53,11 @@ class Solution {
         // not picked
         findCombination(start+1,candidates,target,list);
         
-    }*/
+    }
     
+    /*
+      can also be written in this way also 
+      
     private void findCombination(int start,int [] candidates,int target,List<Integer> list){
         
         if(target < 0) return ;
@@ -70,5 +73,5 @@ class Solution {
            }
        }
         
-    }
+    }*/
 }
