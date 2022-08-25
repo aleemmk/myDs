@@ -41,6 +41,8 @@ class Solution {
             
            res |= isExist(board,i+x,j+y,word,dirs,start+1);
             
+            if(res) return true;   // if any time find the word instantly return true
+            
         }
         board[i][j] =c ;   // backtrack;
         
