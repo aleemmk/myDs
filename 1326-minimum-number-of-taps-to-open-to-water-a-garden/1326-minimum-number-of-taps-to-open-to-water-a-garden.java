@@ -31,7 +31,8 @@ class Solution {
      keep on doing  till max < n
      answer is 2 here
      
-     
+     optimization :
+     once got one max range then we can search after that index of max.
     */
     public int minTaps(int n, int[] ranges) {
         
@@ -42,10 +43,11 @@ class Solution {
         
         while(max < n){
             
-            for(int i=0;i<ranges.length;i++){
+            for(int i=index;i<ranges.length;i++){
                 
                 if( i-ranges[i] <= min && i+ranges[i] > max){
                     max = i+ranges[i];
+                    index = i;
                 }
             }
             if(min == max) return -1;   // garden can not watered [0 0 0 0] no max found .
