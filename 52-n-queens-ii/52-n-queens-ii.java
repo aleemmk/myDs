@@ -1,39 +1,29 @@
 class Solution {
+     int count;
     public int totalNQueens(int n) {
         char board [] [] = new char[n][n];
         
         
         for(char[] brd:board) Arrays.fill(brd,'.');
         
-        List<List<String>> res= new ArrayList<>();
+       count=0;
        
-        solve(board,0,res,n);
+      solve(board,0,n);
         
-        return res.size();
+        return count;
     }
     
-    private List<String> construct(char [][]board){
-        
-        List<String> list = new ArrayList<>();
-        
-        for(char[] brd:board){
-            
-            String s = new String(brd);  // each  row of result converted to string and add to list
-            list.add(s);
-        }
-        return list;
-    }
-    
-    private void solve(char [][] board,int col,List<List<String>> res,int n){
+    private void solve(char [][] board,int col,int n){
        
         if(col == n){
-           res.add(construct(board));
+            count++;
+          return;
         }
         for(int i=0;i<n;i++){
             if(validate(board,i,col)){  
               
                  board[i][col] = 'Q';   // putting queen on first column of every cell;
-                 solve(board,col+1,res,n);
+                 solve(board,col+1,n);
                  board[i][col] ='.';   // backtrack
             
             }
