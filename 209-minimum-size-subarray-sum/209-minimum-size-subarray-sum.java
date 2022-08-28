@@ -44,7 +44,7 @@ class Solution {
                      sum -= nums[left];
                      left++;
                  }
-                 winLen = Math.min(winLen,(right-left+1)+1);
+                 winLen = Math.min(winLen,(right-left+1)+1);  // left pointer inside skip first element so added extra 1
              }
            
              right++;
