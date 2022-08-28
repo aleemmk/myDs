@@ -22,6 +22,9 @@ class Solution {
      step 3. now we keep on moving left pointer to shrink the window untill sum < target
       
       now window size (right-left+1)+1 because left pinter will inside the window.
+      
+      NOTE: if we plot a cumulative sum graph with non negative array then it is monotonically increasing
+      and above sliding window technique (two ptr) is used for monotonically increasing fn.
     */
     
     
