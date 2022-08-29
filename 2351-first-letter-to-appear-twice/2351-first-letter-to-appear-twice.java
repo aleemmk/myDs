@@ -9,6 +9,9 @@ class Solution {
     c  2 3 7
     z  8
     
+    need to return chracter whose frequency first is 2 first time.
+    in other word return the character as soon as u find frequency is 2 .
+    
     
     */
          public char repeatedCharacter(String s) {
