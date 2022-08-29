@@ -11,7 +11,19 @@ class Solution {
     
     
     */
-    public char repeatedCharacter(String s) {
+         public char repeatedCharacter(String s) {
+             int count[] =  new int[26];
+             
+             for(char c:s.toCharArray()){
+                 
+                 count[c-'a']++;
+                 if(count[c-'a'] >1) return c;
+             }
+             return 'a';
+         }
+   
+    
+    public char repeatedCharacter1(String s) {
         Map<Character,List<Integer>> map = new HashMap<>();
         
         for(int i=0;i<s.length();i++){
