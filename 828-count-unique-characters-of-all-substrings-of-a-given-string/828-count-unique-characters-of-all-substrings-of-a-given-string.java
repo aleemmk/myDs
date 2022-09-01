@@ -70,6 +70,7 @@ TOTAL C 3+2 = 5
      =======
          23
       
+      2262. Total Appeal of A String    FOLLOW UP
       */
     
     public int uniqueLetterString(String s) {
