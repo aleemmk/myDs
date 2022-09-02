@@ -9,7 +9,7 @@ class Solution {
      
      n logk
     */
-     public int findKthLargest(int[] nums, int k) {
+     public int findKthLargest1(int[] nums, int k) {
          
          PriorityQueue<Integer> minheap = new PriorityQueue<>();  // minheap
          
@@ -24,7 +24,7 @@ class Solution {
      }
     
     
-    public int findKthLargest1(int[] nums, int k) {
+    public int findKthLargest(int[] nums, int k) {
         /**
          Kth largest means  n-k+1 smallest .
          
@@ -32,56 +32,53 @@ class Solution {
          
          arr [1,2,3,4,5,6]    k = 3 largest.  // 4
          
-         6-3+1 = 4 th smalest 
-         
+
          intution is to to select pivot and find the index of pivot element as per partition of
-         quick sort , if the index < k recuer same  for right side of array.
-         else  for left side . and if index+1 == k return arr[index];
+         quick sort , 
          
         */
         int n = nums.length;
-        int k1 = (n-k);
         int left = 0 ;
         int right = n-1;
-        
-       return  findKthSmallest(nums,left,right,k1);
+        //  here we need to pass k-1 for k th smallest so (n-k+1)-1 = n-k 
+       return  quickSelect(nums,n-k,0,right);
         
     }
     
-    private int findKthSmallest(int nums[],int left, int right,int k){
-     if (left > right) return Integer.MAX_VALUE;
-        
-        int index = partition(nums,left,right);
-        
-        if(index+1 == k)  return nums[index];
-        
-        if(index+1 < k) {
-            return findKthSmallest(nums,index+1,right,k);
-        }else{
-           return findKthSmallest(nums,left,index-1,k);
+    private int quickSelect(int [] nums ,int k ,int left,int right){
+
+         int pivot = nums[right];
+         int pi = partition(nums,left,right,pivot);
+
+         if(k > pi ){
+            return  quickSelect(nums,k,pi+1,right);
+         }else if(k < pi){
+             return quickSelect(nums,k,left,pi-1);
+         }else{
+             return nums[pi];
+         }
+    }
+    
+    private int partition(int [] nums ,int left,int right, int pivot){
+        int i=left;
+        int j=left;
+
+        while(i <= right){
+            if(nums[i] <= pivot){
+                swap(i,j,nums);
+                i++;
+                j++;
+            }else{
+                i++;
+            }
         }
+        return j-1;
+  }
+    
+    public void swap(int i, int j, int[] array) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
     }
     
-    private int partition(int nums[],int left, int right){
-        
-        int pivot = nums[left+(right-left)/2];
-        
-        while(left <= right){
-              
-            while(nums[left] < pivot)left++;
-               
-         
-            while(nums[right] > pivot) right--;
-           
-            if(left<=right){
-                int temp = nums[left];
-                nums[left] = nums[right];
-                nums[right] = temp;
-                  left++;
-                  right--;
-              }
-          }
-                 
-        return left;
-    }
 }
