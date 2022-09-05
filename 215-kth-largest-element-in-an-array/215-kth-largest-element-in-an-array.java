@@ -23,9 +23,7 @@ class Solution {
          return minheap.poll();
      }
     
-    
-    public int findKthLargest(int[] nums, int k) {
-        /**
+      /**
          Kth largest means  n-k+1 smallest .
          
          n= 6
@@ -36,12 +34,28 @@ class Solution {
          intution is to to select pivot and find the index of pivot element as per partition of
          quick sort , 
          
+         TC O(n)  in best time 
+         we we reshufffle array before quick select it will always guarantted O(n)
+         
         */
+    
+    private int [] shuffle(int arr[]){
+        Random rand = new Random();
+        for(int j=1;j<arr.length;j++){
+            int i = rand.nextInt(j+1);   // produce a number between 0 to j (0 inclusive anf j exclusive)
+            swap(i,j,arr);
+        }
+        return arr;
+    }
+    
+    public int findKthLargest(int[] nums, int k) {
+      
         int n = nums.length;
         int left = 0 ;
         int right = n-1;
         //  here we need to pass k-1 for k th smallest so (n-k+1)-1 = n-k 
-       return  quickSelect(nums,n-k,0,right);
+        
+       return  quickSelect(shuffle(nums),n-k,0,right);
         
     }
     
@@ -65,8 +79,8 @@ class Solution {
 
         while(i <= right){
             if(nums[i] <= pivot){
-                swap(i,j,nums);
-                i++;
+                swap(i,j,nums);   // swap with i and j so increase both pointer i++ ,j ++
+                i++;   
                 j++;
             }else{
                 i++;
