@@ -22,27 +22,37 @@ class Solution {
         
         int dp [] [] [] = new int [strs.length+1][m+1][n+1];
         
-       Arrays.stream(dp)
-                .flatMap(Arrays::stream)
-                .forEach(col -> Arrays.fill(col, -1));
-        return findMaxFormUtil(strs,m,n,0,dp);
+        for(int [][] arr:dp){
+            for(int [] a:arr){
+                Arrays.fill(a,-1);
+            }
+        }
+        List<int[]> list = new ArrayList<>();
+       
+        int i=0;
+        
+        for(String str:strs){
+            list.add(countZeroOne(str));
+        }
+        
+        return findMaxFormUtil(list,m,n,0,dp);
         
     }
     
-    private int findMaxFormUtil(String [] strs, int m , int n ,int index,int dp [] [] []){
+    private int findMaxFormUtil( List<int[]> list, int m , int n ,int index,int dp [] [] []){
         
-        if(index == strs.length || (m==0 && n==0))  return 0;
+        if(index == list.size() || (m==0 && n==0))  return 0;
         
         
        if( dp[index][m][n] != -1) return dp[index][m][n];
             
-        int count [] = countZeroOne(strs[index]);
+        int count [] = list.get(index);
         
         if(count[0] > m  ||  count[1] > n)
-            return dp [index] [m] [n] = findMaxFormUtil(strs,m ,n,index+1,dp);
+            return dp [index] [m] [n] = findMaxFormUtil(list,m ,n,index+1,dp);
         
-        int include =  1+findMaxFormUtil(strs,m-count[0] ,n-count[1],index+1,dp);
-        int exclude = findMaxFormUtil(strs,m,n,index+1,dp);
+        int include =  1+findMaxFormUtil(list,m-count[0] ,n-count[1],index+1,dp);
+        int exclude = findMaxFormUtil(list,m,n,index+1,dp);
         
          return dp[index][m][n] =  Math.max(include,exclude);
         
