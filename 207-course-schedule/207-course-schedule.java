@@ -18,14 +18,14 @@ class Solution {
             adj.add(new ArrayList<>());
         }
         
-       /* for(int i=0;i<prerequisites.length;i++){
+        for(int i=0;i<prerequisites.length;i++){
             adj.get(prerequisites[i][1]).add(prerequisites[i][0]);
-        }*/
+        }
         
-        for(int[] preq:prerequisites){
+        /*for(int[] preq:prerequisites){
             List<Integer> list = adj.get(preq[0]);
             list.add(preq[1]);
-        }
+        }*/
         
         int visited [] = new int[numCourses];
         
