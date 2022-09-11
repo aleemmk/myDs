@@ -1,65 +1,52 @@
 class Solution {
-    
     /**
-      Input: numCourses = 2, prerequisites = [[0,1],[0,2] [1,3] [1,4] [3,4]]
+      we detect the cycle in graph by graph coloring.
       
-      0----> 1
-      0----> 2
-      1----> 3
-      1----->4
-      3---- 4
-     
-      0----> {1 ,2}
-      1---->{3,4}
-      2---->{}
-      3---- {4}
-      4----{}
-       
+      we take three status 
       
-        preMap 
-        key courses val pre
-      |  1 ->0 |
-      |  0-> 1 |
-      ----------
+      0  unvisited
+      1  processing
+      2  processed.
       
+       do DFS in graph and if all vertex is processed then it does not have cycle else have cycle.
     */
-     Map<Integer,List<Integer>> map = new HashMap<>();
-    Set<Integer> visited = new HashSet<>();
-    
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-         
-        for(int i=0 ; i< numCourses;i++)
-            map.put(i,new ArrayList<>());
         
+        List<List<Integer>> adj = new ArrayList<>();
         
-        for(int[] p:prerequisites){
-            List<Integer> neighbours = map.get(p[0]);
-            neighbours.add(p[1]);
-            map.put(p[0], neighbours);
+        for(int i=0;i< numCourses+1 ;i++){
+            adj.add(new ArrayList<>());
         }
         
+        for(int[] preq:prerequisites){
+            List<Integer> list = adj.get(preq[0]);
+            list.add(preq[1]);
+        }
         
-        for(int i=0; i<numCourses; i++)
-             if(!dfs(i,map,visited))  return false;
+        int visited [] = new int[numCourses+1];
         
-       return true;
+        Arrays.fill(visited,0);
+        
+        for(int i=0;i<numCourses;i++){
+            if(visited[i] == 0)
+               if(isCycle(adj,visited,i)) return false;    // if cycle is detected  false
+        }
+        return true;  
     }
-            
-            private boolean dfs(int course, Map<Integer,List<Integer>> map, Set<Integer> visited) {
-                if(visited.contains(course)) return false;
-                
-                if(map.get(course).size() == 0) return true;
-                
-                visited.add(course);
-                
-                for(int pre:map.get(course)){
-                    if(!dfs(pre,map,visited)) return false ;
-                }
-                
-                visited.remove(course);
-                map.get(course).clear();
-                
-                return true;
-                
+    
+    private boolean isCycle(List<List<Integer>>adj,int [] visited,int curr){
+     
+        if(visited[curr] == 2) return true;
+        
+           visited[curr] = 2;
+        
+        for(int adjEle:adj.get(curr)){
+            if(visited[adjEle] != 1){
+                if(isCycle(adj,visited,adjEle)) return true; 
             }
+        }
+        visited[curr] = 1;
+        
+        return false;
+    }
 }
