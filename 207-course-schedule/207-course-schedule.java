@@ -14,18 +14,22 @@ class Solution {
         
         List<List<Integer>> adj = new ArrayList<>();
         
-        for(int i=0;i< numCourses+1 ;i++){
+        for(int i=0;i< numCourses ;i++){
             adj.add(new ArrayList<>());
         }
+        
+       /* for(int i=0;i<prerequisites.length;i++){
+            adj.get(prerequisites[i][1]).add(prerequisites[i][0]);
+        }*/
         
         for(int[] preq:prerequisites){
             List<Integer> list = adj.get(preq[0]);
             list.add(preq[1]);
         }
         
-        int visited [] = new int[numCourses+1];
+        int visited [] = new int[numCourses];
         
-        Arrays.fill(visited,0);
+        Arrays.fill(visited,0);    // make 0 means unvisited
         
         for(int i=0;i<numCourses;i++){
             if(visited[i] == 0)
@@ -36,16 +40,16 @@ class Solution {
     
     private boolean isCycle(List<List<Integer>>adj,int [] visited,int curr){
      
-        if(visited[curr] == 2) return true;
+        if(visited[curr] == 2) return true;         // already processed
         
-           visited[curr] = 2;
+           visited[curr] = 2;   // make this node processed
         
         for(int adjEle:adj.get(curr)){
             if(visited[adjEle] != 1){
                 if(isCycle(adj,visited,adjEle)) return true; 
             }
         }
-        visited[curr] = 1;
+        visited[curr] = 1;     // make node  processing 
         
         return false;
     }
