@@ -12,6 +12,8 @@ class Solution {
     
     open ==close ==n 
     
+    Note : TOTAL NUMBER OF COMBINATION IS CATALAN NUMBER
+    
        [""]
        /  
       [( ] 
