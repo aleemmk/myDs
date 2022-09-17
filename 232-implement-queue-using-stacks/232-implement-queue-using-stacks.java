@@ -9,14 +9,17 @@ class MyQueue {
     }
 
     /** Push element x to the back of queue. */
+    
+    // goal is to make every new element in bottom of stack. and last element in top FIFO
+    
     public void push(int x) {
       if(s1.isEmpty()){
-          s1.push(x);
+          s1.push(x);   // push in s1 if it is empty
       }else{
           while(!s1.isEmpty()){
-              s2.push(s1.pop());
+              s2.push(s1.pop());   // make s1 empty ,track all element in another stack then push
           }
-          s1.push(x);
+          s1.push(x);  // now s1 empty push element this elemnt is rear
           while(!s2.isEmpty()){
               s1.push(s2.pop());
           }
