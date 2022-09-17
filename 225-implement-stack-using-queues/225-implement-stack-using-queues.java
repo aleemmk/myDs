@@ -1,18 +1,22 @@
 class MyStack {
+    
+    /**
+    below is pop heavy with two queues.
+    */
 
     /** Initialize your data structure here. */
-    Queue<Integer> q1 ,q2;
+  /*  Queue<Integer> q1 ,q2;
     public MyStack() {
        this.q1 = new LinkedList();
        this.q2 = new LinkedList();
     }
 
-    /** Push element x onto stack. */
+    
     public void push(int x) {
        q1.add(x);
     }
 
-    /** Removes the element on top of the stack and returns that element. */
+
     public int pop() {
 
 
@@ -31,7 +35,7 @@ class MyStack {
         return temp;
     }
 
-    /** Get the top element. */
+    
     public int top() {
         if(q1.size() == 0){
             return -1;
@@ -51,9 +55,48 @@ class MyStack {
         return temp;
     }
 
-    /** Returns whether the stack is empty. */
+  
     public boolean empty() {
         return q1.size() == 0;
+    }*/
+    
+    
+     /** Initialize your data structure here. */
+    
+    /**
+     We can use one queue , logic is to add element in from only 
+     how ?
+     pop every elemnent from front except last after add and insert it again from rear.
+    */
+    Queue<Integer> queue;
+    public MyStack() {
+       this.queue = new LinkedList();
+     
+    }
+
+    /** Push element x onto stack. */
+    public void push(int x) {
+    
+         queue.offer(x);
+        
+        for(int i=1;i < queue.size();i++){
+            queue.offer(queue.remove());
+        }
+    }
+
+    /** Removes the element on top of the stack and returns that element. */
+    public int pop() {
+       return queue.remove();
+    }
+
+    /** Get the top element. */
+    public int top() {
+      return queue.peek();
+    }
+
+    /** Returns whether the stack is empty. */
+    public boolean empty() {
+     return queue.isEmpty();
     }
 }
 
