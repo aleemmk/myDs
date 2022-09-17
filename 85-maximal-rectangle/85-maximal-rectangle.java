@@ -9,6 +9,17 @@ class Solution {
     
     each below row is the sum of above . 
     
+    
+    TC :
+    
+    n-> number of rows
+    m -> num of cols
+    
+    O(m*n) ;
+    O(m) -> for largestRectangleArea 
+    
+    we do number of row time  largestRectangleArea
+    
     */
     public int maximalRectangle(char[][] matrix) {
         
