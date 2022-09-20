@@ -27,7 +27,11 @@ class Solution {
         
         int currMax = Math.max(root.val,max);
         
-    return  preorder(root.left,currMax) + preorder(root.right,currMax)+(root.val >= currMax ? 1 : 0) ;
+        int currNodeIsGood = root.val >=currMax?1:0;      // good for 1 0 for not good
+        int goodNodeFromLeft = preorder(root.left,currMax);
+        int goodnodeFromRight = preorder(root.right,currMax);    
+        
+    return  currNodeIsGood+goodNodeFromLeft+goodnodeFromRight ;
         
     }
 }
