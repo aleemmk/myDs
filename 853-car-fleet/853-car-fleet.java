@@ -1,4 +1,6 @@
-
+/**
+ car fleet is the group of cars to gether reached destination.
+*/
   class Car{
         int position;
         double timetoTarget;
