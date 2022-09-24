@@ -6,16 +6,18 @@ class Solution {
       
       Approach 2 :
       647. Palindromic Substrings
+      in above problem of countng all palindromic substring ,
+      we track of start and end of palindromic string.
+      
 
     */
     
       public String longestPalindrome(String s) {
            int n = s.length();
-        //if(n==0) return 0;
+        
        
         boolean dp[][] = new boolean [n+1][n+1];
         
-       // int res = 0;
           int start=0;
           int end=0;
         
