@@ -1,5 +1,19 @@
 class Solution {
     
+    /**
+    
+    79. Word Search  
+    in above problem we trying to make give word from each cell of matrix by traversing each cell (up,down, left right)
+    
+    in this problem we have list of words .
+    so we make a trie of give list of words. do the same traversal by each cell (up,down,left,right) 
+
+    we got the answer then add it into answer list else back track.
+    
+    backtracking +trie
+    
+    */
+    
     class Node{
      Node links [] = new Node[26];
      String word=null;
@@ -79,12 +93,12 @@ class Solution {
         trie = trie.get(c);
         
         if(trie.getWord() != null) {
-            res.add(trie.getWord() );
-            trie.setWord(null);
+            res.add(trie.getWord() );    // we are at the end of word . add this to answer.
+            trie.setWord(null); // removing duplicate words in answer
             
         }
         
-         board[i][j] ='#';   // visited this cell;
+         board[i][j] ='#';   // visited this cell mark;
         
         for(int[] dir:dirs){
             int x = dir[0];
