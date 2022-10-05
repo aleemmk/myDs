@@ -20,6 +20,9 @@ class Solution {
    
    space O(m*n)
    
+   we can further optimize the space because we just need two rows to fill dp table 
+   how ??
+   
   
     */
     public int maximalSquare(char[][] matrix) {
