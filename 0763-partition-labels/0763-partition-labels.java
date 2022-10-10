@@ -15,11 +15,15 @@ class Solution {
     */
     public List<Integer> partitionLabels(String s) {
         
-        HashMap<Character,Integer> map = new HashMap<>();
+      //  HashMap<Character,Integer> map = new HashMap<>();
+        int lastIndex []= new int[26];
+        
+        
         
         for(int i=0;i<s.length();i++){
             char c  =s.charAt(i);    
-             map.put(c,i);  // max reach of each chracter 
+             //map.put(c,i);  // max reach of each chracter 
+            lastIndex[c-'a'] = i;
         }
       
         int max =0;
@@ -29,7 +33,8 @@ class Solution {
         for(int i=0;i<s.length();i++){
             char c = s.charAt(i);
             
-            max = Math.max(max,map.get(c));
+            //max = Math.max(max,map.get(c));
+            max = Math.max(max,lastIndex[c-'a']);
             if(i==max){
                 // length of partion
                 
